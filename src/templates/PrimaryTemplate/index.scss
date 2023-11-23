@@ -1,0 +1,18 @@
+.Primary {
+  &__container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-rows: 100px 1fr 100px;
+    grid-template-areas:
+        "hd "
+        "main"
+        "ft";
+  }
+
+  &__content {
+    grid-area: main;
+    padding: 40px 100px;
+  }
+}

@@ -1,5 +1,6 @@
 .Footer {
   &__container {
+    grid-area: ft;
     display: flex;
     align-items: center;
     justify-content: space-between;

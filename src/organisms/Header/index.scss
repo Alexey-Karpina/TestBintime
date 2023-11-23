@@ -1,5 +1,6 @@
 .Header {
   &__container {
+    grid-area: hd;
     display: flex;
     justify-content: center;
     background: cadetblue;

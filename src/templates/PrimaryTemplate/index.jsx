@@ -5,9 +5,11 @@ import './index.scss';
 
 export const PrimaryTemplate = ({children}) => {
     return (
-        <div>
+        <div className="Primary__container">
             <Header/>
-            {children}
+            <main className="Primary__content">
+                {children}
+            </main>
             <Footer/>
         </div>
     )
