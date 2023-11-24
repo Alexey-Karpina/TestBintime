@@ -1,26 +1,49 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {default as MuiTableBody} from '@mui/material/TableBody';
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import LinkIcon from '@mui/icons-material/Link';
+import {HeadlinesContext} from "../../pages/MainPage/context/index.js";
+import './index.scss';
+import {Typography} from "../../atoms/Typography/index.jsx";
+import {Link} from "react-router-dom";
 
 export const TableBody = () => {
+    const {data: {articles}} = useContext(HeadlinesContext);
     return (
-        <MuiTableBody>
-            <TableRow>
-                <TableCell>Image</TableCell>
-                <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.</TableCell>
-                <TableCell>tortor vitae purus faucibus ornare</TableCell>
-                <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Fermentum odio eu feugiat pretium nibh ipsum consequat nisl. In hac
-                    habitasse platea dictumst quisque.</TableCell>
-                <TableCell>2023-11-07</TableCell>
-                <TableCell><LinkIcon/></TableCell>
-            </TableRow>
+        <MuiTableBody className="Table">
+            {articles.map((item) => (
+                <TableRow className="Table__row">
+                    <TableCell className="Table__cell">
+                        {item.urlToImage ? (
+                            <img src={item.urlToImage} alt={item.title} className="Table__image"/>
+                        ) : "No image"}
+                    </TableCell>
+                    <TableCell>
+                        {item.title ? (
+                            <Link state={{data: item}} to={`/formula/${item.title}`}>
+                                {item.title}
+                            </Link>
+                        ) : '-'}
+                    </TableCell>
+                    <TableCell>
+                        {item.author ? (
+                            <Typography variant="p">
+                                {item.author}
+                            </Typography>
+                        ) : "-"}
+                    </TableCell>
+                    <TableCell>
+                        {item.description ? (
+                            <Typography variant="p">
+                                {item.description}
+                            </Typography>
+                        ) : '-'}
+                    </TableCell>
+                    <TableCell>{item.publishedAt.split("T")[0]}</TableCell>
+                    <TableCell><LinkIcon/></TableCell>
+                </TableRow>
+            ))}
         </MuiTableBody>
     )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {MainPage} from "./pages/MainPage/index.jsx";
+import {FormulaPage} from "./pages/FormulaPage/index.jsx";
 
 const router = createBrowserRouter([
     {
@@ -10,7 +11,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/formula/:formulaId',
-        element: <></>
+        element: <FormulaPage/>
     }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
